@@ -1,4 +1,28 @@
-.form-div{
-    width: 100vw;
-    height: 100vh;
+.form-group{
+    margin: 25px 25px;
+}
+
+.title{
+    justify-items: center;
+}
+.link-short{
+    border: 1px solid black;
+}
+
+.group-link{
+    position: relative;
+}
+
+.btn-clipboard {
+    position: absolute;
+    top: .65rem;
+    right: .65rem;
+    z-index: 10;
+    display: block;
+    padding: .25rem .5rem;
+    font-size: 65%;
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid;
+    border-radius: .25rem;
 }
