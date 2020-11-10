@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import './Form.css';
 
-
 export default () => {
     const [url, setUrl] = useState('');
     const [shortUrl, setShortUrl] = useState('');
@@ -10,7 +9,6 @@ export default () => {
     const handleInputUrl = (event) => {
         setUrl(event.target.value);
     }
-
 
     const handleClick = async (event) => {
         event.preventDefault();
@@ -34,9 +32,8 @@ export default () => {
 
     }
 
-
     // função para copiar com click
-    const handleCopy = (event) => {
+    const handleCopy = () => {
         const el = document.createElement('textarea');
         el.value = shortUrl;
         document.body.appendChild(el);
@@ -45,10 +42,10 @@ export default () => {
         document.body.removeChild(el);
     }
 
-    const handleLink = () => {
-        window.location.replace(shortUrl);
+    const handleCleanClick = () => {
+        setShortUrl('');
+        setUrl('');
     }
-
 
     return (
         <div class="container">
@@ -72,14 +69,16 @@ export default () => {
                         <p className="lh-title ml3">{shortUrl}</p><br />
                         <button type="button" onClick={handleCopy} className="btn btn-clipboard">Copy</button>
                     </div>
+                    <br />
+                    <div className="tc">
+                        <button type="button" className="tc btn btn-danger" onClick={handleCleanClick}>Limpar</button>
+                    </div>
                 </>
-
                 :
                 ''
             }
+
         </div>
     )
-
-
 
 }
