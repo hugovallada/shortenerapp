@@ -6,6 +6,7 @@ import './Form.css';
 export default () => {
     const [url, setUrl] = useState('');
     const [shortUrl, setShortUrl] = useState('');
+    const [copiado, setCopiado] = useState(false);
 
     const handleInputUrl = (event) => {
         setUrl(event.target.value);
@@ -13,7 +14,7 @@ export default () => {
 
     const handleClick = async (event) => {
         event.preventDefault();
-        console.log(url);
+        setCopiado(false);
         try {
             const response = await fetch('http://localhost:3001/encurtar', {
                 method: "POST",
@@ -41,11 +42,13 @@ export default () => {
         el.select();
         document.execCommand('copy');
         document.body.removeChild(el);
+        setCopiado(true)
     }
 
     const handleCleanClick = () => {
         setShortUrl('');
         setUrl('');
+        setCopiado(false);
     }
 
     return (
@@ -68,7 +71,13 @@ export default () => {
                     <h3 className="tc">Sua ulr encurtada foi gerada!</h3>
                     <div className="flex items-center justify-center pa4 bg-lightest-blue navy group-link">
                         <p className="lh-title ml3">{shortUrl}</p><br />
-                        <button type="button" onClick={handleCopy} className="btn btn-clipboard">Copiar</button>
+                        {
+                            !copiado 
+                            ?
+                            <button type="button" onClick={handleCopy} className="btn btn-clipboard">Copiar</button>
+                            :
+                            <p className="btn-clipboard-copiado">Copiado para o clipboard</p>
+                        }
                     </div>
                     <br />
                     <div className="tc">
