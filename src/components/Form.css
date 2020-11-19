@@ -88,3 +88,38 @@ h3 {
 /* adicionar btn:hover */
 
 /* Trabalhar com min-width: 620px, 960px, 1200px*/
+@media screen and (min-width: 620px) {
+    h3 {
+        font-size: 1.2em;
+    }
+
+    .btn-clipboard-copiado{
+        font-size: 1.03em;
+    }
+
+    .btn {
+        font-size: 1.2em;
+    }
+
+}
+
+@media screen and (min-width: 960px){
+    .group .btn {
+        width: 100%;
+    }
+
+    .btn:hover {
+        background-color: rgba(66, 129, 80, 0.8);
+        color: white;
+    }
+
+    .form-input {
+        height: 2.5em;
+    }
+}
+
+@media screen and (min-width: 1200px){
+    h3 {
+        font-size: 2em;
+    }
+}

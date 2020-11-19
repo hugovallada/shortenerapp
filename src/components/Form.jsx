@@ -57,7 +57,7 @@ export default () => {
             <form method="POST">
                 <div className="group">
                     <input type="text" name="url" value={url} onInput={handleInputUrl} className="form-input" placeholder="Digite a sua url aqui..." />
-                    <button type="submit" onClick={handleClick} className="btn btn-primary ">
+                    <button type="submit" onClick={handleClick} className="btn btn-primary btn-960">
                         Encurtar url
                     </button>
                 </div>
