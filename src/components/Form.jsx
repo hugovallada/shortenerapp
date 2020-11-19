@@ -63,9 +63,10 @@ export default () => {
                 </div>
             </form>
             <br /><br />
-            {shortUrl
+            {shortUrl && shortUrl !== '"Um erro aconteceu"'
                 ?
                 <>
+                
                     <h3 className="tc">Sua ulr encurtada foi gerada!</h3><br/>
                     <div className="flex items-center justify-center pa4 bg-lightest-blue navy group-link rounded">
                         <p className="lh-title ml3">{shortUrl}</p><br />

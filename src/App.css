@@ -7,7 +7,7 @@ body {
   background: url('assets/images/background.png') repeat-y center top fixed;
 }
 
-@media screen and (min-width: 680px){
+@media screen and (min-width: 620px){
   body {
     background-image: url('assets/images/background.png');
     background-size: cover;
