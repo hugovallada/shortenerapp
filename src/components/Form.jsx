@@ -1,5 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 import React, { useState } from 'react';
+import urlBase from '../sensible/urlBase'; //NOTE: Em caso de erro, criar o arquivo urlBase
 
 import './Form.css';
 
@@ -16,7 +17,8 @@ export default () => {
         event.preventDefault();
         setCopiado(false);
         try {
-            const response = await fetch('http://localhost:3001/encurtar', {
+            const base = urlBase || 'localhost:3001';
+            const response = await fetch(`http://${base}/encurtar`, {
                 method: "POST",
                 body: JSON.stringify({
                     url
