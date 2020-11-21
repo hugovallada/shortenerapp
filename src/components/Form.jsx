@@ -1,5 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 import React, { useState } from 'react';
+import urlBase from '../sensible/urlBase'; //NOTE: Em caso de erro, criar o arquivo urlBase
 
 import './Form.css';
 
@@ -16,7 +17,8 @@ export default () => {
         event.preventDefault();
         setCopiado(false);
         try {
-            const response = await fetch('http://localhost:3001/encurtar', {
+            const base = urlBase || 'localhost:3001';
+            const response = await fetch(`http://${base}/encurtar`, {
                 method: "POST",
                 body: JSON.stringify({
                     url
@@ -55,21 +57,20 @@ export default () => {
         <div class="container">
             <h3 className="tc">Encurte as suas urls!</h3>
             <form method="POST">
-                <div className="form-group row">
-                    <input type="text" name="url" value={url} onInput={handleInputUrl} className="form-control col-11" placeholder="Digite a sua url aqui..." />
-                    <button type="submit" onClick={handleClick} className="btn btn-primary col-1">
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
-                        </svg>
+                <div className="group">
+                    <input type="text" name="url" value={url} onInput={handleInputUrl} className="form-input" placeholder="Digite a sua url aqui..." />
+                    <button type="submit" onClick={handleClick} className="btn btn-primary btn-960">
+                        Encurtar url
                     </button>
                 </div>
             </form>
             <br /><br />
-            {shortUrl
+            {shortUrl && shortUrl !== '"Um erro aconteceu"'
                 ?
                 <>
-                    <h3 className="tc">Sua ulr encurtada foi gerada!</h3>
-                    <div className="flex items-center justify-center pa4 bg-lightest-blue navy group-link">
+                
+                    <h3 className="tc">Sua ulr encurtada foi gerada!</h3><br/>
+                    <div className="flex items-center justify-center pa4 bg-lightest-blue navy group-link rounded">
                         <p className="lh-title ml3">{shortUrl}</p><br />
                         {
                             !copiado 
@@ -80,7 +81,7 @@ export default () => {
                         }
                     </div>
                     <br />
-                    <div className="tc">
+                    <div className="tc clean-button">
                         <button type="button" className="tc btn btn-danger" onClick={handleCleanClick}>Limpar</button>
                     </div>
                 </>
